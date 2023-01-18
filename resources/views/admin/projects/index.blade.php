@@ -25,7 +25,7 @@
                 <td>{{$project->summary}}</td>
                 <td><img class="thumb" src="{{$project->cover_image}}" alt=""></td>
                 <td class="d-flex flex-column ">
-                    <a class="my-1 btn btn-primary" href="">Show</a>
+                    <a class="my-1 btn btn-primary" href="{{route('admin.projects.show', $project)}}">Show</a>
                     <a class="my-1 btn btn-warning" href="{{route('admin.projects.edit', $project)}}">Edit</a>
                     <form action="" method="POST">
                         @csrf

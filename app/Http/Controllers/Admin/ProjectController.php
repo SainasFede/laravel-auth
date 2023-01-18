@@ -54,9 +54,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        //
+        return view('admin.projects.show', $project);
     }
 
     /**
@@ -77,9 +77,18 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectRequest $request, Project $project)
     {
-        //
+        $data = $request->all();
+        if($data['name'] != $project->title){
+            $data['slug'] = Project::generateSlug($data['name']);
+        }else{
+            $data['slug'] = $project->slug;
+        }
+
+        $project->update($data);
+
+        return redirect(route('admin.projects.show', $project));
     }
 
     /**
