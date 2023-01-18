@@ -2,7 +2,10 @@
 
 @section('content')
     <div class="container">
-        <h1>Dash</h1>
+        <div class="d-flex justify-content-between">
+            <h1>Dash</h1>
+            <a class="my-1 btn btn-success" href="">Create</a>
+        </div>
         <table class="table text-white">
             <thead>
               <tr>
@@ -21,6 +24,15 @@
                 <td>{{$project->client_name}}</td>
                 <td>{{$project->summary}}</td>
                 <td><img class="thumb" src="{{$project->cover_image}}" alt=""></td>
+                <td class="d-flex flex-column ">
+                    <a class="my-1 btn btn-primary" href="">Show</a>
+                    <a class="my-1 btn btn-warning" href="">Edit</a>
+                    <form action="" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="my-1 btn btn-danger">Delete</button>
+                    </form>
+                </td>
              </tr>
             @endforeach
             </tbody>
