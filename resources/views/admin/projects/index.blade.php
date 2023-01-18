@@ -4,7 +4,7 @@
     <div class="container">
         <div class="d-flex justify-content-between">
             <h1>Dash</h1>
-            <a class="my-1 btn btn-success" href="">Create</a>
+            <a class="my-1 btn btn-success" href="{{route('admin.projects.create')}}">Create</a>
         </div>
         <table class="table text-white">
             <thead>
