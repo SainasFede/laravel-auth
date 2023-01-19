@@ -27,10 +27,13 @@
                 <td class="d-flex flex-column ">
                     <a class="my-1 btn btn-primary" href="{{route('admin.projects.show', $project)}}">Show</a>
                     <a class="my-1 btn btn-warning" href="{{route('admin.projects.edit', $project)}}">Edit</a>
-                    <form action="" method="POST">
+                    <form onsubmit="return confirm('Vuoi eliminare : {{$project->name}}')"
+                        class="d-inline"
+                        action="{{route('admin.projects.destroy', $project)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="my-1 btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger"
+                        title="Delete">Delete</button>
                     </form>
                 </td>
              </tr>
