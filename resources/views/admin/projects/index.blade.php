@@ -39,6 +39,7 @@
              </tr>
             @endforeach
             </tbody>
-          </table>
+        </table>
+        {{$projects->links()}}
     </div>
 @endsection

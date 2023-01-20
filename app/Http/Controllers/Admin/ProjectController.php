@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProjectRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -17,8 +18,12 @@ class ProjectController extends Controller
     public function index()
     {
 
-        $projects = Project::all();
-
+        if(isset($_GET['search'])){
+            $search = $_GET['search'];
+            $projects = Project::where('name','like',"%$search%")->paginate(10);
+        }else{
+            $projects = Project::paginate(10);
+        }
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -41,6 +46,13 @@ class ProjectController extends Controller
     public function store(ProjectRequest $request)
     {
         $data = $request->all();
+
+        if(array_key_exists('cover_image', $data)){
+            $data['image_original'] = $request->file('cover_image')->getClientOriginalName();
+            $data['cover_image'] = Storage::put('uploads', $data['cover_image']);
+        }else{
+            $data['cover_image'] = 'https://store.officesystemsaruba.com/wp-content/uploads/2020/06/3MAKM2012-1.jpg';
+        }
 
         $new_item = new Project();
         $data['slug'] = Project::generateSlug($data['name']);

@@ -20,7 +20,7 @@
           </div>
         @endif
 
-        <form action="{{route('admin.projects.store')}}" method="POST">
+        <form action="{{route('admin.projects.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="name"class="form-label"><strong>Nome Progetto</strong></label>
@@ -50,7 +50,7 @@
 
             <div class="mb-3">
                 <label for="thumb" class="form-label"><strong>Immagine</strong></label>
-                <input type="text"
+                <input type="file"
                 name="cover_image"
                 value=""
                 class="form-control @error('cover_image') is-invalid @enderror"
