@@ -26,7 +26,7 @@ class ProjectRequest extends FormRequest
         return [
             'name'=> 'Required | min:2 | max:70',
             'client_name' => 'Required | min:2 | max:70',
-            'cover_image' => 'max:255'
+            'cover_image' => 'nullable|image|max:18874368',
         ];
     }
 

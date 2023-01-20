@@ -51,7 +51,7 @@
             <div class="mb-3">
                 <label for="thumb" class="form-label"><strong>Immagine</strong></label>
                 <input type="file"
-                onchange="show(event)"
+                onchange="showImage(event)"
                 name="cover_image"
                 value="{{ old('cover_image')}}"
                 class="form-control @error('cover_image') is-invalid @enderror"

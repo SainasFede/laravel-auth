@@ -20,7 +20,7 @@
           </div>
         @endif
 
-        <form action="{{route('admin.projects.update', $project)}}" method="POST">
+        <form action="{{route('admin.projects.update', $project)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -53,7 +53,8 @@
 
             <div class="mb-3">
                 <label for="thumb" class="form-label"><strong>Immagine</strong></label>
-                <input type="text"
+                <input type="file"
+                onchange="showImage(event)"
                 name="cover_image"
                 value="{{old('cover_image', $project->cover_image)}}"
                 class="form-control @error('cover_image') is-invalid @enderror"
@@ -64,6 +65,9 @@
                   <h6>{{$message}}</h6>
                 </div>
                 @enderror
+                <div>
+                    <img src="{{ $project->cover_image ? asset('storage/' . $project->cover_image) : 'https://img.freepik.com/free-vector/illustration-data-folder-icon_53876-6329.jpg?w=2000'}}" width="100" id="output-image" alt="">
+                </div>
             </div>
 
             <div class="mb-3">
@@ -84,4 +88,12 @@
         </form>
 
     </div>
+
+    <script>
+        function showImage(event){
+    	const tagImage = document.getElementById('output-image');
+    	tagImage.src = URL.createObjectURL(event.target.files[0]);
+	}
+
+    </script>
 @endsection
