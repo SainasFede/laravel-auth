@@ -37,10 +37,19 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
                         </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li>
+                            <form  action="{{route('admin.projects.index')}}" method="GET">
+                                @csrf
+                                <input class="form-control d-inline-block w-50" name="search" type="text" placeholder="Cosa cerchi?">
+                                <button class="btn btn-info" type="submit">Search</button>
+                            </form>
+
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
