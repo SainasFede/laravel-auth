@@ -51,6 +51,7 @@
             <div class="mb-3">
                 <label for="thumb" class="form-label"><strong>Immagine</strong></label>
                 <input type="file"
+                onchange="show(event)"
                 name="cover_image"
                 value="{{ old('cover_image')}}"
                 class="form-control @error('cover_image') is-invalid @enderror"
@@ -61,6 +62,9 @@
                   <h6>{{$message}}</h6>
                 </div>
                 @enderror
+                <div>
+                    <img src="" width="100" id="output-image" alt="">
+                </div>
             </div>
 
             <div class="mb-3">
@@ -82,4 +86,12 @@
         </form>
 
     </div>
+
+    <script>
+        function showImage(event){
+    	const tagImage = document.getElementById('output-image');
+    	tagImage.src = URL.createObjectURL(event.target.files[0]);
+	}
+
+    </script>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProjectRequest;
 use App\Models\Project;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -91,11 +92,20 @@ class ProjectController extends Controller
      */
     public function update(ProjectRequest $request, Project $project)
     {
+
         $data = $request->all();
         if($data['name'] != $project->title){
             $data['slug'] = Project::generateSlug($data['name']);
         }else{
             $data['slug'] = $project->slug;
+        }
+
+        if(array_key_exists('cover_image', $data)){
+            if($project->cover_image){
+                Storage::disk('public')->delete($data);
+            }
+            $data['image_original'] = $request->file('cover_image')->getClientOriginalName();
+            $data['cover_image'] = Storage::put('uploads', $data['cover_image']);
         }
 
         $project->update($data);
