@@ -26,7 +26,7 @@
                 <label for="name"class="form-label"><strong>Nome Progetto</strong></label>
                 <input type="text"
                 name="name"
-                value=""
+                value="{{old('name')}}"
                 class="form-control @error('name') is-invalid @enderror"
                 id="name"
                 placeholder="Scrivi il nome">
@@ -42,7 +42,7 @@
                 <textarea class="form-control"
                 name="summary"
                 id="summary"
-                rows="5"></textarea>
+                rows="5">{{old('summary')}}</textarea>
                 <div class="invalid-feedback">
                   <h6></h6>
                 </div>
@@ -52,7 +52,7 @@
                 <label for="thumb" class="form-label"><strong>Immagine</strong></label>
                 <input type="file"
                 name="cover_image"
-                value=""
+                value="{{ old('cover_image')}}"
                 class="form-control @error('cover_image') is-invalid @enderror"
                 id="cover_image"
                 placeholder="Inserisci percorso">
@@ -67,7 +67,7 @@
                 <label for="Nome Cliente" class="form-label"><strong>Nome Cliente</strong></label>
                 <input type="text"
                 name="client_name"
-                value=""
+                value="{{old('client_name')}}"
                 class="form-control @error('client_name') is-invalid @enderror"
                 id="client_name"
                 placeholder="Quanto costa">

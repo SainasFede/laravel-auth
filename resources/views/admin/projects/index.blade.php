@@ -23,7 +23,7 @@
                 <td>{{$project->name}}</td>
                 <td>{{$project->client_name}}</td>
                 <td>{{$project->summary}}</td>
-                <td><img class="thumb" src="{{$project->cover_image}}" alt=""></td>
+                <td><img class="thumb" src="{{ $project->cover_image ? asset('storage/' . $project->cover_image) : 'https://img.freepik.com/free-vector/illustration-data-folder-icon_53876-6329.jpg?w=2000'}}" alt=""></td>
                 <td class="d-flex flex-column ">
                     <a class="my-1 btn btn-primary" href="{{route('admin.projects.show', $project)}}">Show</a>
                     <a class="my-1 btn btn-warning" href="{{route('admin.projects.edit', $project)}}">Edit</a>

@@ -50,8 +50,6 @@ class ProjectController extends Controller
         if(array_key_exists('cover_image', $data)){
             $data['image_original'] = $request->file('cover_image')->getClientOriginalName();
             $data['cover_image'] = Storage::put('uploads', $data['cover_image']);
-        }else{
-            $data['cover_image'] = 'https://store.officesystemsaruba.com/wp-content/uploads/2020/06/3MAKM2012-1.jpg';
         }
 
         $new_item = new Project();
